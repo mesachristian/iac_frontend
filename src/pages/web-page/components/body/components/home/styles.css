@@ -1,0 +1,40 @@
+.home-1-sec{
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #668D2E;
+    height: 80vh;
+    width: 100%;
+}
+
+.home-1-sec::before{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: white;
+    clip-path: ellipse(17% 38% at 8% -5%);
+}
+
+
+.wave {
+    position: absolute;
+    top: 80vh;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+}
+
+.wave svg {
+    position: relative;
+    display: block;
+    width: calc(150% + 1.3px);
+    height: 209px;
+}
+
+.wave .shape-fill {
+    fill: #668D2E;
+}

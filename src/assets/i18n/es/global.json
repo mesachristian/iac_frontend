@@ -1,5 +1,13 @@
 {
     "global" : {
-        "lblHelloWorld" : "Hola Mundo!"
+        "lblIAC" : "Industria Agrícola Colombiana"
+    },
+    "navbar" : {
+        "lblHome" : "Inicio",
+        "lblProducts" : "Productos",
+        "lblAbout" : "Acerca",
+        "lblContact" : "Contacto",
+        "lblSignUp" : "Registrarme",
+        "lblSignIn" : "Log In"
     }
 } 

@@ -1,13 +1,10 @@
 import React from 'react';
-import { useTranslation } from 'react-i18next';
+import WebPage from 'pages/web-page';
 
 function App() {
-  const [translate] = useTranslation();
 
   return (
-    <h1 className="text-3xl font-bold underline text-red-600">
-      {translate("global.lblHelloWorld")}
-    </h1>
+    <WebPage />    
   );
 }
 
