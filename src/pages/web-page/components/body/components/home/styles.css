@@ -81,3 +81,10 @@
 .custom-shape-divider-bottom-1661807083 .shape-fill {
     fill: #ffffff;
 }
+
+.logo{
+    width: 90%;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
