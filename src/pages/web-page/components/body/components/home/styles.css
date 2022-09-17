@@ -38,3 +38,46 @@
 .wave .shape-fill {
     fill: #668D2E;
 }
+
+.custom-shape-divider-top-1661805617 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+}
+
+.custom-shape-divider-top-1661805617 svg {
+    position: relative;
+    display: block;
+    width: calc(125% + 1.3px);
+    height: 150px;
+    transform: rotateY(180deg);
+}
+
+.custom-shape-divider-top-1661805617 .shape-fill {
+    fill: #ffffff;
+}
+
+.custom-shape-divider-bottom-1661807083 {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+    transform: rotate(180deg);
+}
+
+.custom-shape-divider-bottom-1661807083 svg {
+    position: relative;
+    display: block;
+    width: calc(125% + 1.3px);
+    height: 150px;
+    transform: rotateY(180deg);
+}
+
+.custom-shape-divider-bottom-1661807083 .shape-fill {
+    fill: #ffffff;
+}
