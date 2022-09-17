@@ -1,0 +1,6 @@
+.blur-custom{
+    backdrop-filter: blur(400px);
+    -moz-filter: blur(100px);
+    -webkit-filter: blur(1.5px);
+    -o-filter: blur(100px);
+}
