@@ -31,14 +31,18 @@ module.exports = {
     extend: {
       colors : {
         "custom-white" : "#f0f0f0",
+        "custom-gray" : "#dee2e6",
         "custom-green": {
           "100": "#D2E459",
           "200": "#91B247",
           "300": "#80A142",
           "400": "#668D2E",
           "500": "#597C2B",
+        },
       },
-      },
+      backgroundImage : {
+        'profile-1' : "url('https://images.news18.com/ibnlive/uploads/2022/07/c-vijayakumar-16587402574x3.jpg')",
+      }
     },
   },
   plugins: [Myclass],

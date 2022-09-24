@@ -10,20 +10,29 @@ import React, {
 } from "react";
 import { useTranslation } from "react-i18next";
 
-import campesinoLogo from 'assets/img/campesino.jpg';
-import campesinaLogo from 'assets/img/campesina.jpg';
-import cowLogo from 'assets/img/cow.jpg';
-import pigLogo from 'assets/img/pig.jpg';
-import chickenLogo from 'assets/img/chicken.jpg';
-import palmLogo from 'assets/img/palma.jpg';
-import agricultureLogo from 'assets/img/agriculture.jpg';
+import cowLogo from "assets/img/cow.jpg";
+import pigLogo from "assets/img/pig.jpg";
+import chickenLogo from "assets/img/chicken.jpg";
+import palmLogo from "assets/img/palma.jpg";
+import agricultureLogo from "assets/img/agriculture.jpg";
+
+import c1 from "assets/img/cow-1-t.jpg";
+import c2 from "assets/img/cow-2-t.jpg";
+import c3 from "assets/img/hen-t.jpg";
+import c4 from "assets/img/palm-t.jpg";
+import c5 from "assets/img/yerba-t.jpg";
+import c6 from "assets/img/pig-t.jpg";
 
 import "./styles.css";
 import "./animations.css";
 
+interface ImageSlider2Interface{
+  moveImages() : void;
+} 
+
 type HomeRef = {
-  handleScroll: () => Promise<void>,
-}
+  handleScroll: () => Promise<void>;
+};
 
 const Home = forwardRef<HomeRef, any>((props, ref) => {
   const [translate] = useTranslation();
@@ -34,8 +43,17 @@ const Home = forwardRef<HomeRef, any>((props, ref) => {
 
   const hectaresInViewport = useIsInViewport(hectaresRef);
 
+  const sliderRef = useRef<ImageSlider2Interface>(null);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      sliderRef.current?.moveImages();
+    }, 5000);
+    return () => clearInterval(interval);
+  }, []);
+
   useImperativeHandle(ref, () => ({
-    handleScroll 
+    handleScroll,
   }));
 
   const handleScroll = async () => {
@@ -82,9 +100,8 @@ const Home = forwardRef<HomeRef, any>((props, ref) => {
           </div>
 
           <div className="w-6/12 h-full p-6">
-            <div className="h-full w-full bg-[#f0f0f0] rounded-3xl shadow-xl flex justify-center items-center">
-              <img className="w-[35%] h-[70%]" alt="" src={campesinoLogo}></img>
-              <img className="w-[35%] h-[70%]" alt="" src={campesinaLogo}></img>
+            <div className="h-full w-full bg-transparent rounded-3xl shadow-xl  flex flex-col justify-center items-center">
+              <ImageSlider2 ref={sliderRef}/>
             </div>
           </div>
         </div>
@@ -328,11 +345,11 @@ const Home = forwardRef<HomeRef, any>((props, ref) => {
               incluyen
             </h1>
             <div className="w-full flex justify-center mt-8">
-            <button className="w-full px-3 py-2 bg-custom-white text-custom-green-300 rounded-2xl hover:bg-custom-green-100 hover:text-black">
-              Conoce más sobre nuestras lineas de negocio
-              <i className="fas fa-arrow-right bounce-arrow ml-3"></i>
-            </button>
-          </div>
+              <button className="w-full px-3 py-2 bg-custom-white text-custom-green-300 rounded-2xl hover:bg-custom-green-100 hover:text-black">
+                Conoce más sobre nuestras lineas de negocio
+                <i className="fas fa-arrow-right bounce-arrow ml-3"></i>
+              </button>
+            </div>
           </div>
 
           <div className="w-1/2 h-full p-12 z-10">
@@ -350,7 +367,7 @@ const Home = forwardRef<HomeRef, any>((props, ref) => {
                 </div>
                 <div className="col-start-5 col-end-7">
                   <div className="w-full h-full rounded-2xl bg-white shadow-lg flex items-center justify-center">
-                  <img className="logo" alt="" src={chickenLogo}></img>
+                    <img className="logo" alt="" src={chickenLogo}></img>
                   </div>
                 </div>
 
@@ -361,7 +378,7 @@ const Home = forwardRef<HomeRef, any>((props, ref) => {
                 </div>
                 <div className="col-start-4 col-end-6">
                   <div className="w-full h-full rounded-2xl bg-white shadow-lg flex items-center justify-center">
-                  <img className="logo" alt="" src={palmLogo}></img>
+                    <img className="logo" alt="" src={palmLogo}></img>
                   </div>
                 </div>
               </div>
@@ -395,6 +412,18 @@ const Home = forwardRef<HomeRef, any>((props, ref) => {
           </svg>
         </div>
       </div>
+
+      <footer className="w-full flex flex-col justify-center items-center p-8 overflow-hidden bg-white">
+        <h4 className="text-xs text-green-900">
+          Copyright © 2022, Industria Agricola Colombiana Inc. - All rights reserved
+        </h4>
+        <div className="mt-4 text-custom-green-500">
+          <i className="fab fa-facebook mr-4 scale-150"></i>
+          <i className="fab fa-instagram mr-4 scale-150"></i>
+          <i className="fab fa-linkedin mr-4 scale-150"></i>
+          <i className="fab fa-twitter scale-150"></i>
+        </div>
+      </footer>
     </Fragment>
   );
 });
@@ -421,4 +450,39 @@ function useIsInViewport(ref: MutableRefObject<any>) {
   return isIntersecting;
 }
 
+const ImageSlider2 = forwardRef<ImageSlider2Interface, {}>((props, ref) => {
+
+  const IMAGES = [c1, c2, c3, c4, c5, c6];
+
+  const [transClass, setTransClass] = useState('');
+  const [imgIdx, setImgIdx] = useState(0)
+  const [nextImgIdx, setNextImgIdx] = useState(1);
+  
+  useImperativeHandle(
+    ref,
+    () => ({
+      moveImages(){
+        setTransClass('move-to-right move-trans-time');
+        setTimeout( () => {
+          setTransClass('');
+          let newImgIdx = imgIdx + 1 == IMAGES.length ? 0 : imgIdx + 1;
+          let newNextImgIdx = newImgIdx + 1 == IMAGES.length ? 0 : newImgIdx + 1;
+    
+          setImgIdx(newImgIdx);
+          setNextImgIdx( newNextImgIdx );
+        }, 1700);
+      }
+    }),
+  );
+
+  return(
+      <div className="h-full w-full flex flex-col justify-start items-center rounded-2xl">
+        <div className="w-full h-full flex justify-end overflow-x-hidden rounded-2xl">
+            <img src={IMAGES[nextImgIdx]} className={`w-full ${transClass} rounded-2xl`}></img>
+            <img src={IMAGES[imgIdx]} className={`w-full ${transClass} rounded-2xl`}></img>
+        </div>
+        
+      </div>
+  );
+});
 export default Home;
